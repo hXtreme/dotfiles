@@ -1,0 +1,26 @@
+#! /bin/sh
+
+## A shell script with various battery related functions
+
+BATT_DIR="/sys/class/power_supply/BAT0"
+
+battery_level() {
+	cat "$BATT_DIR/capacity"
+}
+
+battery_status() {
+	cat "$BATT_DIR/status"
+}
+
+battery_is_charging() {
+	BATT_STATUS="$(battery_status)"
+	[ "$BATT_STATUS" != "Discharging" ] && echo "$BATT_STATUS" || echo ""
+}
+
+
+case "$1" in
+	level) battery_level ;;
+	status) battery_status ;;
+	charging) battery_is_charging ;;
+esac
+
