@@ -22,5 +22,18 @@ case "$1" in
 	level) battery_level ;;
 	status) battery_status ;;
 	charging) battery_is_charging ;;
+	-h) 
+		echo "Usage: battery [ level | status | charging | -h ] "
+		echo "		level: Shows battery level"
+		echo "		status: Shows battery status (Charging/Discharging...)"
+		echo "		charging: Returns status if not discharging"
+		echo "		-h: Show this help message" ;;
+
+	*) 
+		echo "Usage: battery [ level | status | charging | -h ]"
+		echo "		level: Shows battery level"
+		echo "		status: Shows battery status (Charging/Discharging...)"
+		echo "		charging: Returns status if not discharging"
+		echo "		-h: Show this help message" ;;
 esac
 
