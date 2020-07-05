@@ -1,6 +1,7 @@
-## Env
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+#! /bin/zsh
+
+## Import .shrc
+source $HOME/.config/sh/.shrc
 
 ## ZSH Configuration variables.
 export ZSH_CONFIG_PATH="$HOME/.config/zsh"
@@ -24,36 +25,42 @@ setopt promptsubst
 source "$ZSH_CONFIG_PATH/theme/agnoster.zsh-theme"
 
 # Keybindings section
-bindkey -e
-bindkey '^[[7~' beginning-of-line                               # Home key
+# bindkey -e
+# bindkey -v
+# bindkey '^[[7~' beginning-of-line                               # Home key
 bindkey '^[[H' beginning-of-line                                # Home key
-if [[ "${terminfo[khome]}" != "" ]]; then
-  bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
-fi
-bindkey '^[[8~' end-of-line                                     # End key
+# if [[ "${terminfo[khome]}" != "" ]]; then
+#   bindkey "${terminfo[khome]}" beginning-of-line                # [Home] - Go to beginning of line
+# fi
+# bindkey '^[[8~' end-of-line                                     # End key
 bindkey '^[[F' end-of-line                                     # End key
-if [[ "${terminfo[kend]}" != "" ]]; then
-  bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
-fi
-bindkey '^[[2~' overwrite-mode                                  # Insert key
+# if [[ "${terminfo[kend]}" != "" ]]; then
+#   bindkey "${terminfo[kend]}" end-of-line                       # [End] - Go to end of line
+# fi
+# bindkey '^[[2~' overwrite-mode                                  # Insert key
 bindkey '^[[3~' delete-char                                     # Delete key
 bindkey '^[[C'  forward-char                                    # Right key
 bindkey '^[[D'  backward-char                                   # Left key
 bindkey '^[[5~' history-beginning-search-backward               # Page up key
 bindkey '^[[6~' history-beginning-search-forward                # Page down key
-
+# 
 # Navigate words with ctrl+arrow keys
 bindkey '^[Oc' forward-word                                     #
 bindkey '^[Od' backward-word                                    #
 bindkey '^[[1;5D' backward-word                                 #
 bindkey '^[[1;5C' forward-word                                  #
-bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
-bindkey '^[[Z' undo                                             # Shift+tab undo last action
+# bindkey '^H' backward-kill-word                                 # delete previous word with ctrl+backspace
+# bindkey '^[[Z' undo                                             # Shift+tab undo last action
 
 ## My scripts
 # TODO: Add my scripts here.
 
 ## ZSH Plugins
+### Zsh Completions
+autoload -Uz compinit
+fpath=("$ZSH_PLUGIN/zsh-completions/src" $fpath)
+source "$ZSH_PLUGIN/zsh-completions/zsh-completions.plugin.zsh"
+
 ### Autosuggestions
 source "$ZSH_PLUGIN/zsh-autosuggestions/zsh-autosuggestions.plugin.zsh"
 
@@ -92,4 +99,6 @@ export LESS_TERMCAP_so=$'\E[01;47;34m'
 export LESS_TERMCAP_ue=$'\E[0m'
 export LESS_TERMCAP_us=$'\E[01;36m'
 export LESS=-r
+
+compinit							# Initialize the auto-completion system
 
