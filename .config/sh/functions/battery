@@ -28,7 +28,7 @@ case "$1" in
 		echo "		status: Shows battery status (Charging/Discharging...)"
 		echo "		charging: Returns status if not discharging"
 		echo "		-h: Show this help message" ;;
-
+	-q) ;;
 	*) 
 		echo "Usage: battery [ level | status | charging | -h ]"
 		echo "		level: Shows battery level"
