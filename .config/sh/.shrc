@@ -1,0 +1,22 @@
+#! /bin/sh
+
+## My general shell rc file.
+# This file will typically be sourced by all my POSIX compliant shells.
+
+## Set up my enviornment variables
+
+### DEFAULT APPS
+export EDITOR=/usr/bin/vim
+export VISUAL=/usr/bin/vim
+export PAGER=/usr/bin/less
+
+### The following should add the local gems into PATH
+set RUBY_VER="$(ruby -v | cut -d' ' -f2 | cut -d. -f1,2).0"
+export PATH="$HOME/.gem/ruby/$RUBY_VER/bin:$PATH"
+unset RUBY_VER
+
+## Custom functions
+set FUNCTIONS_DIR="$HOME/.config/sh/functions"
+. $FUNCTIONS_DIR/battery -q
+unset FUNCTIONS_DIR
+
