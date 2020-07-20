@@ -6,5 +6,5 @@ alias mn-dotfiles='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=
 
 ### Virtual environment
 alias venv='virtualenv'
-alias venv-activate='. /env/bin/activate'
+alias venv-activate='. ./env/bin/activate'
 
