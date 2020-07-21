@@ -102,3 +102,6 @@ export LESS=-r
 
 compinit							# Initialize the auto-completion system
 
+
+# added by travis gem
+[ ! -s /home/hpar/.travis/travis.sh ] || source /home/hpar/.travis/travis.sh
