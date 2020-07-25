@@ -2,11 +2,17 @@
 "
 
 :set number relativenumber
+:set termguicolors
 
 " Plugins
 call plug#begin()
 	" Nvim Completion manager.
 	Plug 'ncm2/ncm2'
+	
+	" Solarized theme (finally)
+	let g:neosolarized_contrast = "normal"
+	set background=dark
+	Plug 'iCyMind/NeoSolarized'
 	
 	" Yet Another Remote Plugin Framework.
 	Plug 'roxma/nvim-yarp'
@@ -37,4 +43,7 @@ call plug#begin()
 	" See: https://github.com/ncm2/ncm2/pull/23 for configuration.
 	Plug 'lervag/vimtex', { 'for': ['tex', 'bib'] }
 call plug#end()
+
+" Select Solarized as my theme.
+colorscheme NeoSolarized
 
