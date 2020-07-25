@@ -12,6 +12,9 @@ nitrogen --restore
 ### Set auto repeat delay for key-presses.
 xset r rate 275
 
+### Enable Tap-to-click
+xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
+
 ## Status_date
 # Return a formatted date
 function status_date {
