@@ -1,0 +1,7 @@
+# Run:
+# git config --global core.excludesfile $HOME/.config/git/globalignore
+# To setup git to use this file.
+
+# Jetbrains, you make me do this!
+.idea/
+
