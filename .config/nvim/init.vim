@@ -31,14 +31,19 @@ call plug#begin()
 	" Completion source for spelling correction.
 	Plug 'fgrsnau/ncm2-aspell'
 	
-	" Completion source for various programming languages.
-	" Python
-	Plug 'ncm2/ncm2-jedi', { 'for': ['py', 'pyc'] }
-	
 	" C/C++
 	let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
 	Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp', 'h', 'hpp'] }
 	
+	" Python Completions vie jedi
+	let g:pymode_rope = 0
+	let g:jedi#show_call_signatures = "0"
+	let g:jedi#popup_on_dot = 0
+	Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+
+	" Git plugin (Fugitive)
+	Plug 'tpope/vim-fugitive'
+
 	" LaTeX
 	" See: https://github.com/ncm2/ncm2/pull/23 for configuration.
 	Plug 'lervag/vimtex', { 'for': ['tex', 'bib'] }
