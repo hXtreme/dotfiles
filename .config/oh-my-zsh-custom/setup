@@ -1,0 +1,23 @@
+#! /bin/sh
+
+PLUGINS_DIR="./plugins"
+DEST_DIR="$ZSH/custom/plugins"
+
+if [ -d $"PLUGINS_DIR" ]; then
+  cd $PLUGINS_DIR || exit 255
+  mkdir -p "$DEST_DIR"
+  for plugin in *; do
+    [ -d "${plugin}" ] && echo "Linking plugin: ${plugin}" && ln -rs "./${plugin}" "${DEST_DIR}/${plugin}"
+  done
+fi
+
+THEMES_DIR="./plugins"
+DEST_DIR="$ZSH/custom/themes"
+
+if [ -d "$THEMES_DIR" ]; then
+  cd $THEMES_DIR || exit 255
+  mkdir -p "$DEST_DIR"
+  for theme in *; do
+    [ -d "${theme}" ] && echo "Linking theme: ${theme}" && ln -rs "./${theme}" "${DEST_DIR}/${theme}"
+  done
+fi
