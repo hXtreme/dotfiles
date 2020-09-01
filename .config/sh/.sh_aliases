@@ -11,3 +11,8 @@ alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -
 alias venv='virtualenv'
 alias venv-activate='. ./env/bin/activate'
 
+
+### Just me being lazy
+alias p='pacman'
+alias sp='sudo pacman'
+alias y='yay'
