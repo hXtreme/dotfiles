@@ -52,3 +52,6 @@ call plug#end()
 " Select Solarized as my theme.
 colorscheme NeoSolarized
 
+
+" Set my leader key.
+let mapleader = '  '
