@@ -1,0 +1,5 @@
+#! /bin/sh
+
+## Open a tabbed surf instance
+tabbed -c surf -pe
+

@@ -1,0 +1,38 @@
+
+
+# Audio +/-/mute keys
+#  Output volume +/-.
+XF86Audio{Raise,Lower}Volume
+    amixer sset Master {5%+,5%-} unmute
+
+#  Input volume +/-.
+shift + XF86Audio{Raise,Lower}Volume
+    amixer sset Capture {5%+,5%-} unmute
+
+#  Toggle mute
+XF86Audio{_,Mic}Mute
+    amixer sset {Master,Capture} toggle
+
+#  Input Mute
+#   Additionally overload shift + Output Mute to mute mic
+shift + XF86AudioMute
+    amixer sset Capture toggle
+
+
+# Execute program
+#  Execute some applications
+#   - e: electron apps (see below)
+#   - n: nnn
+#   - r: ranger
+#   - f: firefox
+#   - s: surf (tabbed)
+super + e ; {f,n,r,s}
+    st {firefox,nnn,ranger,tsurf}
+
+#  Execute electron apps
+#   - m: messenger
+#   - p: piazza
+#   - w: whatsapp
+#   - y: youtube-music
+super + e ; e ; {m,p,w,y}
+    {fb-messenger,piazza,whatsapp,yt-music}

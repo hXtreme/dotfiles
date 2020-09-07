@@ -15,6 +15,9 @@ xset r rate 275
 ### Enable Tap-to-click
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 
+## Run Simple X Hot-Key Daemon
+sxhkd &
+
 ## Status_date
 # Return a formatted date
 function status_date {
