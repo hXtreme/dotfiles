@@ -27,7 +27,7 @@ shift + XF86AudioMute
 #   - f: firefox
 #   - s: surf (tabbed)
 super + e ; {f,n,r,s}
-    st {firefox,nnn,ranger,tsurf}
+    {firefox,st nnn,st ranger,tsurf}
 
 #  Execute electron apps
 #   - m: messenger
