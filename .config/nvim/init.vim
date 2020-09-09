@@ -32,14 +32,17 @@ call plug#begin()
 	Plug 'fgrsnau/ncm2-aspell'
 	
 	" C/C++
-	let g:ncm2_pyclang#library_path = '/usr/lib/libclang.so'
-	Plug 'ncm2/ncm2-pyclang', { 'for': ['c', 'cpp', 'h', 'hpp'] }
+	let g:clang_library_path = '/usr/lib/libclang.so'
+	Plug 'rip-rip/clang_complete', { 'for': ['c', 'cpp', 'h', 'hpp'] }
 	
 	" Python Completions vie jedi
 	let g:pymode_rope = 0
 	let g:jedi#show_call_signatures = "0"
 	let g:jedi#popup_on_dot = 0
 	Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+
+	" Coq : Interactive Coq Proofs
+	Plug 'whonore/Coqtail', { 'for': ['v'] }
 
 	" Git plugin (Fugitive)
 	Plug 'tpope/vim-fugitive'
