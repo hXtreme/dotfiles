@@ -125,3 +125,4 @@ fi
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source "$ZSH/custom/.zsh_aliases"
 
+timeout --preserve-status 1s tty-clock -cxtS
