@@ -20,3 +20,5 @@ FUNCTIONS_DIR="$HOME/.config/sh/functions"
 . "$FUNCTIONS_DIR/battery" -q
 unset FUNCTIONS_DIR
 
+## ssh-agent
+. $HOME/.cache/ssh/agent

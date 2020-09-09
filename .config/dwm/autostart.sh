@@ -33,3 +33,8 @@ do
 	sleep "$(echo $RANDOM | awk '{ print ($1 % 200)/100.0 }')"
 done &
 
+### Setup ssh-agent
+# It works as follows:
+# Start the agent and store the setup code to .cache
+# shrc will source the setup code and things should work.
+ssh-agent -s | head -n-1 > $HOME/.cache/ssh/agent &

@@ -1,0 +1,3 @@
+# Ignore agent
+# The reason to add this is so that git creates this directory on clone.
+agent
