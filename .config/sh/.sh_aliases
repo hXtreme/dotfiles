@@ -11,6 +11,9 @@ alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -
 alias venv='virtualenv'
 alias venv-activate='. ./env/bin/activate'
 
+### nnn
+# Open text files with EDITOR
+alias nnn='nnn -e'
 
 ### Just me being lazy
 alias p='pacman'

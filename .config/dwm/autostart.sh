@@ -16,7 +16,7 @@ xset r rate 275
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 
 ## Run Simple X Hot-Key Daemon
-(cd $HOME && sxhkd) &
+(cd $HOME && . ./.config/sh/.shrc && sxhkd) &
 
 ## Status_date
 # Return a formatted date
