@@ -18,6 +18,7 @@ unset RUBY_VER
 ## Custom functions
 FUNCTIONS_DIR="$HOME/.config/sh/functions"
 . "$FUNCTIONS_DIR/battery" -q
+. "$FUNCTIONS_DIR/spell-check"
 unset FUNCTIONS_DIR
 
 ## ssh-agent

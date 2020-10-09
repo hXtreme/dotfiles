@@ -1,0 +1,12 @@
+#! /bin/sh
+
+## Check a word for spelling errors.
+
+spell_check() {
+  OUT=$(echo "$1" | aspell -a | tail -n+2)
+  [ "$OUT" != "*" ] && echo "$OUT" && return 1
+  echo "$(tput bold)$(tput setaf 2)✓$(tput sgr0)"
+  return 0
+}
+
+alias spell-check='spell_check'

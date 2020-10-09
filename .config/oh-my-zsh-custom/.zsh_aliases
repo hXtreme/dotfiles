@@ -6,4 +6,5 @@ alias cp="cp -i"                                                # Confirm before
 alias df='df -h'                                                # Human-readable sizes
 alias free='free -m'                                            # Show sizes in MB
 
-
+alias crep='grep --color=always'
+alias diff='diff --color=always'
