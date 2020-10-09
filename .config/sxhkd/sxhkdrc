@@ -5,6 +5,11 @@
 XF86Audio{Raise,Lower}Volume
     amixer sset Master {5%+,5%-} unmute
 
+#  Output volume +/-.
+#   Ignore max limit.
+ctrl + XF86Audio{Raise,Lower}Volume
+    pactl set-sink-volume 0 {+5%,-5%}
+
 #  Input volume +/-.
 shift + XF86Audio{Raise,Lower}Volume
     amixer sset Capture {5%+,5%-} unmute
@@ -36,3 +41,7 @@ super + e ; {f,n,r,s}
 #   - y: youtube-music
 super + e ; e ; {m,p,w,y}
     {fb-messenger,piazza,whatsapp,yt-music}
+
+# Take a screenshot
+Print
+    gnome-screenshot -i
