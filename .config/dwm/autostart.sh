@@ -16,25 +16,13 @@ xset r rate 275
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 
 ## Run Simple X Hot-Key Daemon
-(cd $HOME && . ./.config/sh/.shrc && sxhkd) &
-
-## Status_date
-# Return a formatted date
-function status_date {
-	VAL="$(date +"%a %d %b %I:%M %p")"
-	echo "$VAL"
-	return 0
-}
+(cd "$HOME" && . ./.config/sh/.shrc && sxhkd) &
 
 ### Populate status info
-while true;
-do
-	xsetroot -name "$(status_date)"
-	sleep "$(echo $RANDOM | awk '{ print ($1 % 200)/100.0 }')"
-done &
+slstatus &
 
 ### Setup ssh-agent
 # It works as follows:
 # Start the agent and store the setup code to .cache
 # shrc will source the setup code and things should work.
-ssh-agent -s | head -n-1 > $HOME/.cache/ssh/agent &
+ssh-agent -s | head -n-1 > "$HOME"/.cache/ssh/agent &
