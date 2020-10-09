@@ -76,6 +76,7 @@ HIST_STAMPS="yyyy-mm-dd"
 plugins=(
 	git
 	colored-man-pages
+	docker
 	zsh-completions
 	zsh-autosuggestions
 	thefuck
@@ -115,6 +116,8 @@ fi
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
+# github-cli completions
+eval "$(gh completion --shell zsh)"; compdef _gh gh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
