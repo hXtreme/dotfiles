@@ -1,12 +1,12 @@
 [submodule "oh-my-zsh"]
 	url = https://github.com/ohmyzsh/ohmyzsh.git
-	path = .config/oh-my-zsh
+	path = .config/ohmyzsh
 [submodule "zsh-autosuggestions"]
-	path = .config/oh-my-zsh-custom/plugins/zsh-autosuggestions
+	path = .config/ohmyzsh-custom/plugins/zsh-autosuggestions
 	url = https://github.com/zsh-users/zsh-autosuggestions.git
 [submodule "zsh-completions"]
-	path = .config/oh-my-zsh-custom/plugins/zsh-completions
+	path = .config/ohmyzsh-custom/plugins/zsh-completions
 	url = https://github.com/zsh-users/zsh-completions.git
 [submodule "zsh-syntax-highlighting"]
-	path = .config/oh-my-zsh-custom/plugins/zsh-syntax-highlighting
+	path = .config/ohmyzsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
