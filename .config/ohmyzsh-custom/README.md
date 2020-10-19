@@ -1,4 +1,4 @@
-# oh-my-zsh-custom
+# ohmyzsh-custom
 
 These are my custom set of plugins and themes(prompts) that I use with zsh.
 
