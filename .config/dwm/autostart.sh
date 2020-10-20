@@ -15,14 +15,21 @@ xset r rate 275
 ### Enable Tap-to-click
 xinput set-prop "SynPS/2 Synaptics TouchPad" "libinput Tapping Enabled" 1
 
-## Run Simple X Hot-Key Daemon
+### Run dunst notification daemon
+killall dunst
+(cd $HOME && dunst) &
+
+### Run Simple X Hot-Key Daemon
+killall sxhkd
 (cd "$HOME" && . ./.config/sh/.shrc && sxhkd) &
 
 ### Populate status info
+killall slstatus
 slstatus &
 
 ### Setup ssh-agent
 # It works as follows:
 # Start the agent and store the setup code to .cache
 # shrc will source the setup code and things should work.
+killall ssh-agent
 ssh-agent -s | head -n-1 > "$HOME"/.cache/ssh/agent &
