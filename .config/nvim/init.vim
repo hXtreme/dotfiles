@@ -4,6 +4,8 @@
 :set number relativenumber
 :set termguicolors
 
+set encoding=UTF-8
+
 " Plugins
 call plug#begin()
 	" Nvim Completion manager.
@@ -14,6 +16,11 @@ call plug#begin()
 	set background=dark
 	Plug 'iCyMind/NeoSolarized'
 	
+	" Nerdtree - file manager and its git plugin.
+	let g:NERDTreeGitStatusUseNerdFonts = 1
+	Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+	map <C-n> :NERDTreeToggle<CR>
+
 	" Yet Another Remote Plugin Framework.
 	Plug 'roxma/nvim-yarp'
 	
@@ -22,7 +29,7 @@ call plug#begin()
 	Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
 	
 	" Suggest completions using snippets.
-	Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
+	" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
 	
 	" Suggest completions from buffer.
 	Plug 'ncm2/ncm2-bufword'
@@ -50,6 +57,9 @@ call plug#begin()
 	" LaTeX
 	" See: https://github.com/ncm2/ncm2/pull/23 for configuration.
 	Plug 'lervag/vimtex', { 'for': ['tex', 'bib'] }
+
+	" DevIcons
+	Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Select Solarized as my theme.
@@ -57,4 +67,28 @@ colorscheme NeoSolarized
 
 
 " Set my leader key.
-let mapleader = '  '
+let mapleader = ','
+
+" The few mappings and options below come from
+" the gist: https://gist.github.com/arbrix/cb6b4b6a8b455ba430cc8dd4574fe4e4
+" with a few additions of my own.
+
+" Search case insensitive
+set ignorecase
+
+" Get efficient: shortcut mappings
+nnoremap ; :
+
+" Split window
+noremap <leader>k :lefta split<CR>
+noremap <leader>j :rightb split<CR>
+noremap <leader>h :rightb vsplit<CR>
+noremap <leader>l :lefta vsplit<CR>
+map <C-k> <C-W>k
+map <C-k> <C-W>j
+map <C-h> <C-W>h
+map <C-l> <C-W>l
+imap <C-k> <C-W>k
+imap <C-k> <C-W>j
+imap <C-h> <C-W>h
+imap <C-l> <C-W>l
