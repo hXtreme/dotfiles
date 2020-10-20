@@ -8,6 +8,8 @@
 ### DEFAULT APPS
 export EDITOR=/usr/bin/vim
 export VISUAL=/usr/bin/vim
+
+export LESSHISTFILE="$HOME/.local/share/less/hst"
 export PAGER=/usr/bin/less
 
 ### The following should add the local gems into PATH
