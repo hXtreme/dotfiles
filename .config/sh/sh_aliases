@@ -27,3 +27,9 @@ alias v='nvim'
 alias figlet='figlet -kcf colossal '
 alias cbanner='(figlet | lolcat -ft )'
 alias date-banner='date +"%I:%M %P" | cbanner'
+
+### bluetoothctl
+alias blue='bluetoothctl '
+alias bluedev='blue devices '
+alias blueconn='blue connect '
+alias bluedconn='blue disconnect '
