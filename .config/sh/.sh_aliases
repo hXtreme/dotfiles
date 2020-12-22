@@ -2,7 +2,7 @@
 
 ## A shell agnostic alias file
 
-alias mn-dotfiles='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=$HOME' 
+alias mn-dotfiles='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=$HOME '
 
 ### pip
 alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -f1 | xargs -r -d"\n" pip install -U'
