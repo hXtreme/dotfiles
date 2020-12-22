@@ -1,4 +1,8 @@
 
+# Audio Bluetooth Headset profile.
+#  Toggle mic operation.
+shift + XF86Tools
+    toggle_a2dp
 
 # Audio +/-/mute keys
 #  Output volume +/-.
@@ -23,6 +27,10 @@ XF86Audio{_,Mic}Mute
 shift + XF86AudioMute
     amixer sset Capture toggle
 
+#  Messages - dunst
+#   - h: history
+XF86Mail; d; {h}
+    dunstctl {history-pop}
 
 # Execute program
 #  Execute some applications
@@ -31,8 +39,9 @@ shift + XF86AudioMute
 #   - r: ranger
 #   - f: firefox
 #   - s: surf (tabbed)
-super + e ; {f,n,r,s}
-    {firefox,st nnn,st ranger,tsurf}
+#   - m: music (ncmpcpp)
+super + e ; {f,n,r,s,m}
+    {firefox,st nnn,st ranger,tsurf,st ncmpcpp}
 
 #  Execute electron apps
 #   - m: messenger

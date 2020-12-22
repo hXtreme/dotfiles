@@ -1,0 +1,20 @@
+#! /bin/bash
+
+# Random ID number.
+MSG_ID=26487
+
+HEADSET_MAC="$(bluetoothctl info | head -n 1 | cut -d " " -f2)"
+[[ "$HEADSET_MAC" == "" ]] && exit 0
+
+HEADSET_NAME="bluez_card.${HEADSET_MAC//:/_}"
+
+current_profile="$(pactl list | grep -A 30 "$HEADSET_NAME" | grep 'Active Profile:' | cut -d' ' -f3)"
+
+if [[ $current_profile == "a2dp_sink" ]]; then
+    pactl set-card-profile "$HEADSET_NAME" headset_head_unit &&
+    dunstify "🎤 Headset Mode: HSP/HFP" -r "$MSG_ID"
+else
+    pactl set-card-profile "$HEADSET_NAME" a2dp_sink &&
+    dunstify "🎧 Headset Mode: A2DP" -r "$MSG_ID"
+fi
+
