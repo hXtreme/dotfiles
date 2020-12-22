@@ -5,3 +5,6 @@
 # Jetbrains, you make me do this!
 .idea/
 
+# Microsoft, you make me do this!
+.vscode/
+
