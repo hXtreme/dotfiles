@@ -1,6 +1,6 @@
 #! /bin/zsh
 
-source ~/.config/sh/.sh_aliases
+source ~/.config/sh/sh_aliases
 
 alias cp="cp -i"                                                # Confirm before overwriting something
 alias df='df -h'                                                # Human-readable sizes

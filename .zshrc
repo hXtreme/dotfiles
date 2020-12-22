@@ -1,7 +1,7 @@
 #! /bin/zsh
 
 # Import .shrc - my POSIX shellrc file
-source $HOME/.config/sh/.shrc
+source $HOME/.config/sh/shrc
 
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
