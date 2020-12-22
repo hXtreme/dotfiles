@@ -17,11 +17,19 @@ RUBY_VER="$(ruby -v | cut -d' ' -f2 | cut -d. -f1,2).0"
 export PATH="$HOME/.gem/ruby/$RUBY_VER/bin:$PATH"
 unset RUBY_VER
 
+### Add the cargo bin directory to PATH
+export PATH="$HOME/.local/bin/cargo:$PATH"
+
 ## Custom functions
 FUNCTIONS_DIR="$HOME/.config/sh/functions"
 . "$FUNCTIONS_DIR/battery" -q
 . "$FUNCTIONS_DIR/spell-check"
+. "$FUNCTIONS_DIR/mount_for_me"
+. "$FUNCTIONS_DIR/newsboat"
 unset FUNCTIONS_DIR
 
 ## ssh-agent
 . $HOME/.cache/ssh/agent
+
+## Zoom Home
+export ZOOM_HOME="${HOME}/.local/share/zoomus"

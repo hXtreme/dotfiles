@@ -77,6 +77,7 @@ plugins=(
 	git
 	colored-man-pages
 	docker
+	pipenv
 	zsh-completions
 	zsh-autosuggestions
 	thefuck
@@ -90,6 +91,9 @@ HISTFILE="$HOME/.cache/.zsh_history"
 
 # User configuration
 
+## nnn - cd on quit
+source /usr/share/nnn/quitcd/quitcd.bash_zsh
+
 # Key re-bindings
 
 ## Page up key
@@ -101,23 +105,9 @@ bindkey '^[[6~' history-beginning-search-forward
 ## Ctrl + backspace
 bindkey '^H' backward-kill-word
 
-# export MANPATH="/usr/local/man:$MANPATH"
-
-# You may need to manually set your language environment
-# export LANG=en_US.UTF-8
-
-# Preferred editor for local and remote sessions
-if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='vim'
-else
-  export EDITOR='nvim'
-fi
-
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
 
-# github-cli completions
-eval "$(gh completion --shell zsh)"; compdef _gh gh
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
 # users are encouraged to define aliases within the ZSH_CUSTOM folder.
@@ -128,4 +118,6 @@ eval "$(gh completion --shell zsh)"; compdef _gh gh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source "$ZSH/custom/.zsh_aliases"
 
-timeout --preserve-status 1s tty-clock -cxtS
+eval "$(direnv hook zsh)"
+
+date-banner

@@ -1,0 +1,22 @@
+#! /bin/sh
+
+ZSH_COMPLETIONS_DIR="$HOME/.config/ohmyzsh-custom/plugins/zsh-completions/src"
+
+# -----------------------------
+# # Rust
+# ## rustup completions
+# ```
+rustup completions zsh rustup > "$ZSH_COMPLETIONS_DIR"/_rustup
+# ```
+
+# ## cargo completions
+# ```
+rustup completions zsh cargo > "$ZSH_COMPLETIONS_DIR"/_cargo
+# ```
+
+# -----------------------------
+# # Github-cli
+gh completion --shell zsh > "$ZSH_COMPLETIONS_DIR"/_gh
+
+# -----------------------------
+

@@ -16,6 +16,14 @@ alias venv-activate='. ./env/bin/activate'
 alias nnn='nnn -e'
 
 ### Just me being lazy
+alias s='sudo '
 alias p='pacman'
-alias sp='sudo pacman'
+alias pu='pacman -Syu'
+alias pc='pacman -Rs $(pacman -Qdtq)'
 alias y='yay'
+alias v='nvim'
+
+### fancy-banner
+alias figlet='figlet -kcf colossal '
+alias cbanner='(figlet | lolcat -ft )'
+alias date-banner='date +"%I:%M %P" | cbanner'
