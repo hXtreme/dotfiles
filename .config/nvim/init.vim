@@ -1,65 +1,56 @@
-" hXtreme's .nvimrc file
+" hXtreme's init.vim file
 "
 
-:set number relativenumber
+:set number
 :set termguicolors
+:filetype on
 
 set encoding=UTF-8
 
 " Plugins
 call plug#begin()
-	" Nvim Completion manager.
-	Plug 'ncm2/ncm2'
-	
-	" Solarized theme (finally)
-	let g:neosolarized_contrast = "normal"
-	set background=dark
-	Plug 'iCyMind/NeoSolarized'
-	
-	" Nerdtree - file manager and its git plugin.
-	let g:NERDTreeGitStatusUseNerdFonts = 1
-	Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-	map <C-n> :NERDTreeToggle<CR>
 
-	" Yet Another Remote Plugin Framework.
-	Plug 'roxma/nvim-yarp'
-	
-	" Completion source for vimscripts.
-	" Depends on 'Shougo/neco-vim'.
-	Plug 'ncm2/ncm2-vim' | Plug 'Shougo/neco-vim'
-	
-	" Suggest completions using snippets.
-	" Plug 'SirVer/ultisnips' | Plug 'honza/vim-snippets'
-	
-	" Suggest completions from buffer.
-	Plug 'ncm2/ncm2-bufword'
-	Plug 'ncm2/ncm2-path'
-	
-	" Completion source for spelling correction.
-	Plug 'fgrsnau/ncm2-aspell'
-	
-	" C/C++
-	let g:clang_library_path = '/usr/lib/libclang.so'
-	Plug 'rip-rip/clang_complete', { 'for': ['c', 'cpp', 'h', 'hpp'] }
-	
-	" Python Completions vie jedi
-	let g:pymode_rope = 0
-	let g:jedi#show_call_signatures = "0"
-	let g:jedi#popup_on_dot = 0
-	Plug 'davidhalter/jedi-vim', { 'for':  'python' }
+    " Conquer of Completion
+    Plug 'neoclide/coc.nvim', {'branch': 'release'}
+    function! CocCurrentFunction()
+        return get(b:, 'coc_current_function', '')
+    endfunction
 
-	" Coq : Interactive Coq Proofs
-	Plug 'whonore/Coqtail', { 'for': ['v'] }
+    " Nvim Completion manager.
+    "Plug 'ncm2/ncm2'
 
-	" Git plugin (Fugitive)
-	Plug 'tpope/vim-fugitive'
+    " Solarized theme (finally)
+    let g:neosolarized_contrast = "normal"
+    set background=dark
+    Plug 'iCyMind/NeoSolarized'
 
-	" LaTeX
-	" See: https://github.com/ncm2/ncm2/pull/23 for configuration.
-	Plug 'lervag/vimtex', { 'for': ['tex', 'bib'] }
+    " Nerdtree - file manager and its git plugin.
+    let g:NERDTreeGitStatusUseNerdFonts = 1
+    Plug 'preservim/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+    map <C-n> :NERDTreeToggle<CR>
 
-	" DevIcons
-	Plug 'ryanoasis/vim-devicons'
+    " Powerline - lightline
+    set laststatus=2
+    set noshowmode
+    set t_Co=256
+    Plug 'itchyny/lightline.vim'
+    let g:lightline = {
+        \ 'colorscheme': 'solarized',
+        \ 'active': {
+        \   'left': [ [ 'mode', 'paste' ],
+        \             [ 'cocstatus', 'currentfunction', 'readonly', 'filename', 'modified' ] ]
+        \ },
+        \ 'component_function': {
+        \   'cocstatus': 'coc#status',
+        \   'currentfunction': 'CocCurrentFunction'
+        \ },
+        \ }
+
+    " Coq : Interactive Coq Proofs
+    Plug 'whonore/Coqtail', { 'for': ['v'] }
+
+    " DevIcons
+    Plug 'ryanoasis/vim-devicons'
 call plug#end()
 
 " Select Solarized as my theme.
@@ -84,11 +75,11 @@ noremap <leader>k :lefta split<CR>
 noremap <leader>j :rightb split<CR>
 noremap <leader>h :rightb vsplit<CR>
 noremap <leader>l :lefta vsplit<CR>
-map <C-k> <C-W>k
-map <C-k> <C-W>j
-map <C-h> <C-W>h
-map <C-l> <C-W>l
-imap <C-k> <C-W>k
-imap <C-k> <C-W>j
-imap <C-h> <C-W>h
-imap <C-l> <C-W>l
+map <S-k> <C-W>k
+map <S-j> <C-W>j
+map <S-h> <C-W>h
+map <S-l> <C-W>l
+imap <C-S-k> <C-W>k
+imap <C-S-j> <C-W>j
+imap <C-S-h> <C-W>h
+imap <C-S-l> <C-W>l
