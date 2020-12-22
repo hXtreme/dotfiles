@@ -1,0 +1,5 @@
+#! /bin/sh
+
+newsboat() {
+  BROWSER=link_handler.py /usr/bin/newsboat "$@"
+}
