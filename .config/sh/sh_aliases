@@ -2,7 +2,25 @@
 
 ## A shell agnostic alias file
 
-alias mn-dotfiles='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=$HOME '
+### File/Dir picker
+alias pick='ls -a | fzf --prompt="picker>" '
+
+### manage dotfiles repo
+alias dot='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=$HOME '
+alias dotc='dot commit -v ' # Create commit
+alias dotp='dot push ' # Push commits
+alias dotll='dot pull ' # Pull commits
+alias dotf='dot fetch ' # Fetch
+alias dotfa='dot fetch --all ' # Fetch all
+alias dotlg='dot log ' # Show log
+alias dotst='dot status ' # Show status
+alias dotsts='dotst --short ' # Show short status
+alias dotstm='dotst --porcelain' # Show machine readable status
+alias dota='dot add ' # Stage for commit
+alias dotpickl='dotstm | sed -r "s/^\s*(R|M)\s+//g" | fzf --prompt="picker>" ' # Pick from repo status
+alias dotad='dota $(pick) ' # Pick and stage
+alias dotal='dota $(dotpickl) ' # Pick and stage
+
 
 ### pip
 alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -f1 | xargs -r -d"\n" pip install -U'
