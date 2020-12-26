@@ -21,7 +21,7 @@ killall dunst 2> /dev/null
 
 ### Run Simple X Hot-Key Daemon
 killall sxhkd 2> /dev/null
-(cd "$HOME" && . ./.config/sh/.shrc && sxhkd) &
+(cd "$HOME" && . ./.config/sh/shrc && sxhkd) &
 
 ### Populate status info
 killall slstatus 2> /dev/null
