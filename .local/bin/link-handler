@@ -1,40 +1,75 @@
-#! /bin/python
+#!/usr/bin/env python3
 
 from os import execlp
 from sys import argv, stderr
-import subprocess
+from functools import partial
 import shutil
+import dmenu
+import re
+
+
+def base_handler(program, *args):
+    execlp(program, program, *args)
+
+
+firefox_handler = partial(base_handler, "/usr/bin/firefox")
+links_handler = partial(base_handler, "/usr/bin/links")
+surf_handler = partial(base_handler, "/usr/local/bin/surf")
+vlc_handler = partial(base_handler, "/usr/bin/vlc")
+
+
+def zoom_handler(*args):
+    args = list(args)
+    URL_REGEX = (
+        r"https?://"
+        r"(?P<domain>[a-zA-Z0-9]*\.zoom\.us)/j/"
+        r"(?P<confno>[0-9]+)"
+        r"(?:\?pwd=(?P<pwd>.*))?"
+    )
+    assert len(args) >= 1
+    if m := re.match(URL_REGEX, args[-1]):
+        matches: dict = m.groupdict()
+        uri = (
+            f"zoommtg://{matches['domain']}/join?action=join&confno={matches['confno']}"
+        )
+        if "pwd" in matches:
+            uri += f"&pwd={matches['pwd']}"
+        args[-1] = uri
+        base_handler("/usr/bin/zoom", *args)
+    else:
+        print(f"url {args[-1]} didn't match to a zoom meeting url.", file=stderr)
+        exit(1)
+    pass
+
 
 LINK_HANDLERS = {
-    "firefox": "/usr/bin/firefox",
-    "links": "/usr/bin/links",
-    "surf": "/usr/local/bin/surf",
-    "vlc": "/usr/bin/vlc",
+    "firefox": firefox_handler,
+    "links": links_handler,
+    "surf": surf_handler,
+    "vlc": vlc_handler,
+    "zoom": zoom_handler,
 }
-
-LINK_HANDLER_STR = "\n".join(LINK_HANDLERS.keys())
 
 if __name__ == "__main__":
     if len(argv) < 2:
         print("Usage:\n", "\tlink-handler [program-args] link", sep="", file=stderr)
         exit(1)
     # Now choose the link handler
-    run = subprocess.run(
-        ["-b", "-p", "link-handler"],
-        executable="/usr/local/bin/dmenu",
-        capture_output=True,
-        text=True,
-        input=LINK_HANDLER_STR,
+    selection = dmenu.show(
+        LINK_HANDLERS,
+        true_center=True,
+        lines=3,
+        columns=3,
+        prompt="🔗 link >",
+        min_width=400,
     )
-    if run.returncode != 0:
-        print("Abort!", file=stderr)
+    if selection is None:
         exit(0)
-    handler = run.stdout.strip()
     args = argv[1:]
-    if handler in LINK_HANDLERS:
-        execlp(LINK_HANDLERS[handler], LINK_HANDLERS[handler], *args)
-    elif shutil.which(handler):
-        execlp(handler, handler, *args)
+    if selection in LINK_HANDLERS:
+        LINK_HANDLERS[selection](*args)
+    elif shutil.which(selection):
+        execlp(selection, selection, *args)
     else:
         print("Handler not found!", file=stderr)
         exit(1)

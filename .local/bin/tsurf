@@ -1,5 +1,9 @@
 #! /bin/sh
 
-## Open a tabbed surf instance
-tabbed -c surf -pe
-
+if [ -z "$XEMBED" ]; then
+    ## Open a tabbed surf instance
+    tabbed -c -n tsurf surf -e
+else
+    # Already in an embeded XWindow, use that.
+    surf -e "$XEMBED" 2> /dev/null &
+fi

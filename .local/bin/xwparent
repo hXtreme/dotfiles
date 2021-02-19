@@ -1,0 +1,22 @@
+#! /bin/sh
+
+# Script to re-parent xWindows.
+
+xwp() {
+    SRC="$(xdotool selectwindow)"
+    DEST="$(xdotool selectwindow)"
+
+    [ "$SRC" != "" ] && [ "$DEST" != "" ] && xdotool windowreparent "$SRC" "$DEST" || exit 1
+}
+
+xwpr() {
+    rwid=$(xwininfo -root | awk '/Window id:/{print $4}')
+    SRC="$(xdotool selectwindow)"
+    [ "$SRC" != "" ] && xdotool windowreparent "$SRC" $rwid
+    exit 2 # <-- Not Implemented.
+}
+
+case "$1" in
+    u) xwpr ;; # <-- Work in progress, not working currently.
+    *) xwp ;;
+esac

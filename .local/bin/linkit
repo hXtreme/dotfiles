@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# Symlink a file to another
+
+DEST_DIR="$1"
+if [[ -z "$DEST_DIR" ]]; then
+    echo -e "Destination directory missing.\n"\
+	    "Usage: linkit DEST_DIR\n" >&2
+    exit 1
+fi
+
+SRC="$(find . -maxdepth 1 -type d -printf "%P\n" | fzf)"
+DEST="$DEST_DIR/$SRC"
+
+if [[ -z "$SRC" ]]; then
+    echo -e "Exiting ..."
+    exit 0
+fi
+
+echo "Linking $DEST -> ./$SRC"
+ln -sr "./$SRC" "$DEST"

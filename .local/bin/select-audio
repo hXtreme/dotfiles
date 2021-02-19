@@ -1,0 +1,31 @@
+#! /bin/sh
+
+SINK_ICON="🎧 Output"
+SOURCE_ICON="🎤 Input"
+
+extract_device_name() {
+  DEVICE_LIST="$(echo "$2" | grep -e "name:" | sed 's/.*<\(.*\)>/\1/g')"
+  SELECTION="$(echo "$DEVICE_LIST" | dmenu -b -p "$1 >" -C -l 3 -mw 400)"
+  echo "$SELECTION"
+}
+
+COMMAND_TYPE="${1:-"$(echo -e "$SOURCE_ICON\n$SINK_ICON" | dmenu -b -p "audio >" -C -l 3 -mw 200)"}"
+
+if [ "$COMMAND_TYPE" = "$SINK_ICON" ]; then
+  # Randomly generated MSG_ID for this type of message.
+  MSG_ID=23691
+  TYPE="sink"
+  DEVICES="$(pacmd list-sinks)"
+elif [ "$COMMAND_TYPE" = "$SOURCE_ICON" ]; then
+  # Randomly generated MSG_ID for this type of message.
+  MSG_ID=13610
+  TYPE="source"
+  DEVICES="$(pacmd list-sources)"
+else
+  exit 1
+fi
+
+DEVICE="$(extract_device_name "$COMMAND_TYPE" "$DEVICES")"
+
+[ -n "$DEVICE" ] && pactl set-default-"$TYPE" "$DEVICE" &&
+dunstify "$COMMAND_TYPE ${DEVICE} selected" -r "$MSG_ID"

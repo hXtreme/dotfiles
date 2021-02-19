@@ -1,0 +1,93 @@
+#!/usr/bin/env python3
+
+"""Open a youtube video in mpv"""
+
+__script_name__ = """yt-mpv"""
+__author__ = """Harsh Parekh"""
+__email__ = """harsh_parekh@outlook.com"""
+__version__ = "0.0.1"
+
+import sys
+import click
+import dmenu
+import pyperclip
+import youtube_dl
+
+from os import execl
+
+dmenu_config = {
+    "true_center": True,
+    "columns": 2,
+    "prompt": " yt >",
+    "min_width": 1000,
+}
+
+
+@click.command()
+@click.version_option(__version__, "-v", "--version")
+@click.option(
+    "-n",
+    "--number",
+    "count",
+    default=5,
+    type=click.IntRange(1, 15, clamp=True),
+    help="Number of results to lookup.",
+)
+@click.option("-q", "query", default="")
+@click.option(
+    "-c",
+    "--clip",
+    type=click.BOOL,
+    is_flag=True,
+    default=False,
+    help="Extract query from clipboard.",
+)
+@click.option(
+    "-i",
+    "--interactive",
+    is_flag=True,
+    default=False,
+    help="Start in interactive mode.",
+)
+def main(count, query, clip, interactive):
+    print(f"count={count}, query={query}, interactive={interactive}")
+    if interactive:
+        options = list()
+        if clip and (c := pyperclip.paste()):
+            options.append(c)
+        if query:
+            options.append(query)
+        if len(options) == 0:
+            options.append('')
+        query = dmenu.show(options, lines=min(2, len(options)), **dmenu_config)
+    elif clip and (c := pyperclip.paste()):
+        query = c
+    if query == "":
+        raise click.ClickException("No query string provided.")
+    with youtube_dl.YoutubeDL({"noplaylist": True}) as ytdl:
+        search_results = ytdl.extract_info(
+            f"ytsearch{count}:{query}", download=False
+        ).get("entries", None)
+        if search_results is None:
+            click.echo("No results found!")
+            return 0
+        results = {e["id"]: f"[{e['uploader']}]{e['title']}" for e in search_results}
+        if (
+            video := dmenu.show(
+                list(results.values()),
+                lines=min(count, len(results), 10),
+                **dmenu_config,
+            )
+        ) :
+            try:
+                video_id = next(k for k, v in results.items() if v == video)
+                url = f"https://youtu.be/{video_id}"
+                execl("/usr/bin/mpv", "/usr/bin/mpv", url)
+            except StopIteration:
+                raise click.ClickException(
+                    "Invalid selection!\n" f"{video} is not in search results."
+                )
+
+
+if __name__ == "__main__":
+    sys.exit(main())

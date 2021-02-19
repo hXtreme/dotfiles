@@ -1,0 +1,124 @@
+#!/usr/bin/env python3
+
+"""Open a workspace"""
+
+__script_name__ = """workspace-picker"""
+__author__ = """Harsh Parekh"""
+__email__ = """harsh_parekh@outlook.com"""
+__version__ = "0.1.2"
+
+import sys
+import click
+import dmenu
+
+from eliot import to_file, log_call
+from pathlib import Path
+from os import execl
+
+to_file(open(f"/tmp/{__script_name__}.log", "w"))
+
+CONFIG_DIR = Path(click.get_app_dir(__script_name__))
+
+if not CONFIG_DIR.exists():
+    print(f"Creating config directory at: {CONFIG_DIR}")
+    CONFIG_DIR.mkdir()
+
+FILTERS = {d.name: f"{d.absolute()}" for d in CONFIG_DIR.iterdir() if d.is_dir()}
+
+
+@log_call
+def get_workspaces(path_str="all"):
+    path = Path(path_str) if path_str != "all" else Path(CONFIG_DIR, "all")
+    if not path.exists() or not path.is_dir():
+        raise click.ClickException(
+            f"Provided path({path}) to workspace files is invalid."
+        )
+    return {file.name: str(file) for file in path.rglob(r"*") if file.is_file()}
+
+
+@log_call
+def exec_script(script_path: str):
+    execl(script_path, script_path)
+
+
+@click.group()
+@click.version_option(__version__, "-v", "--version")
+@click.help_option("-h", "--help")
+@log_call
+def main():
+    """Open a workspace"""
+    pass
+
+
+@main.command()
+@click.option(
+    "-f",
+    "--filter",
+    "_filter",
+    type=click.Choice(FILTERS, case_sensitive=False),
+    default="all",
+)
+@click.help_option("-h", "--help")
+def list(_filter):
+    """List workspaces"""
+    filter_path = FILTERS[_filter]
+    matched_workspaces = get_workspaces(filter_path)
+    if len(matched_workspaces) > 0:
+        click.echo("\n".join(matched_workspaces))
+    pass
+
+
+@main.command()
+@click.option(
+    "-f",
+    "--filter",
+    "_filter",
+    type=click.Choice(FILTERS, case_sensitive=False),
+    default="all",
+)
+@click.argument("workspace")
+@click.help_option("-h", "--help")
+@log_call
+def open(_filter, workspace):
+    """Open workspace"""
+    try:
+        matched_workspaces = get_workspaces(FILTERS[_filter])[workspace]
+        exec_script(matched_workspaces)
+    except KeyError:
+        raise click.ClickException(
+            f"workspace script for {workspace} not found.\n"
+            f"You need to create(or link) a workspace script at "
+            f"{Path(FILTERS[_filter], workspace)}",
+        )
+    pass
+
+
+@main.command()
+@click.option(
+    "-f",
+    "--filter",
+    "_filter",
+    type=click.Choice(FILTERS, case_sensitive=False),
+    default="all",
+)
+@click.help_option("-h", "--help")
+@log_call
+def it(_filter):
+    """Open workspace interactively"""
+    workspaces = get_workspaces(FILTERS[_filter])
+    if (
+        workspace := dmenu.show(
+            workspaces,
+            true_center=True,
+            lines=3,
+            columns=3,
+            prompt=" workspace >",
+            min_width=400,
+        )
+    ) and workspace in workspaces:
+        exec_script(workspaces[workspace])
+    pass
+
+
+if __name__ == "__main__":
+    sys.exit(main())
