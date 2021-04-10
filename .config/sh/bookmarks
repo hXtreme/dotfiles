@@ -1,0 +1,16 @@
+#! /bin/sh
+
+# #Bookmarks to quickly navigate into a folder.
+
+# ## Course directories
+alias cis555='cd "$HOME/Documents/2021-spring/cis555"'
+alias cis520='cd "$HOME/Documents/2021-spring/cis520"'
+
+# ## Scratch files
+alias scratch='cd "$HOME/Documents/scratch"'
+
+# ## Suckless utils
+alias sl='cd "$HOME/Documents/suckless"'
+alias sl-st='cd "$HOME/Documents/suckless/st"'
+alias sl-dwm='cd "$HOME/Documents/suckless/dwm"'
+alias sl-dmenu='cd "$HOME/Documents/suckless/dmenu"'

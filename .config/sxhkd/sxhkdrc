@@ -9,11 +9,6 @@ shift + XF86Tools
 XF86Audio{Raise,Lower}Volume
     amixer sset Master {5%+,5%-} unmute
 
-#  Output volume +/-.
-#   Ignore max limit.
-ctrl + XF86Audio{Raise,Lower}Volume
-    pactl set-sink-volume 0 {+5%,-5%}
-
 #  Input volume +/-.
 shift + XF86Audio{Raise,Lower}Volume
     amixer sset Capture {5%+,5%-} unmute
@@ -29,28 +24,44 @@ shift + XF86AudioMute
 
 #  Messages - dunst
 #   - h: history
-XF86Mail; d; {h}
+XF86Mail ; {h}
     dunstctl {history-pop}
 
 # Execute program
-#  Execute some applications
+# ===============
+
+#  Execute some gui applications
 #   - e: electron apps (see below)
-#   - n: nnn
-#   - r: ranger
 #   - f: firefox
 #   - s: surf (tabbed)
+#   - w: write_stylus
+#   - z: zathura (tabbed)
+super + e ; {f,s,w,z}
+    {firefox,tsurf,write_stylus,tabbed -c -n "zathura" "zathura" "-e"}
+
+#  Execute some tui applications
+#   - t: terminal
+#   - p: python
+#   - n: nnn
+#   - r: ranger
 #   - m: music (ncmpcpp)
-super + e ; {f,n,r,s,m}
-    {firefox,st nnn,st ranger,tsurf,st ncmpcpp}
+super + e ; {t,p,n,r,m}
+    st -n "f-st" -g=120x32+400+280 {_,ipython,nnn,ranger,ncmpcpp}
 
 #  Execute electron apps
 #   - m: messenger
-#   - p: piazza
 #   - w: whatsapp
-#   - y: youtube-music
-super + e ; e ; {m,p,w,y}
-    {fb-messenger,piazza,whatsapp,yt-music}
+super + e ; e ; {m,w}
+    {fb-messenger,whatsapp}
+
+#  Execute dmenu apps
+#   - p: passmenu
+#   - w: workspace-picker
+#   - a: select-audio
+#   - y: yt-mpv
+super + s ; {p,w,a,y}
+    {passmenu,workspace-picker it,select-audio,yt-mpv -i -c}
 
 # Take a screenshot
 Print
-    gnome-screenshot -i
+    F="$(scrot 'Screenshot_from_%Y-%m-%d_%H-%M-%S.png' --border --select --exec 'echo $f')" && D="$HOME/Pictures/$(echo $F | sed 's/\_/ /g')" && mv "$HOME/$F" "$D" && sxiv "$D"

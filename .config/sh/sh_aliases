@@ -21,6 +21,8 @@ alias dotpickl='dotstm | sed -r "s/^\s*(R|M)\s+//g" | fzf --prompt="picker>" ' #
 alias dotad='dota $(pick) ' # Pick and stage
 alias dotal='dota $(dotpickl) ' # Pick and stage
 
+### copy files
+alias copy='rsync -rv --info=progress2 '
 
 ### pip
 alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -f1 | xargs -r -d"\n" pip install -U'

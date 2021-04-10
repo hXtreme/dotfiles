@@ -28,6 +28,9 @@ FUNCTIONS_DIR="$HOME/.config/sh/functions"
 . "$FUNCTIONS_DIR/newsboat"
 unset FUNCTIONS_DIR
 
+## Bookmarks
+. "$HOME/.config/sh/bookmarks"
+
 ## ssh-agent
 . $HOME/.cache/ssh/agent
 

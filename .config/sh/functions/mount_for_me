@@ -1,0 +1,22 @@
+#! /bin/sh
+
+## Mount a device to be read by the calling user.
+
+mnt() {
+    DEV=$1
+    LOC=$2
+    G=$GID
+    U=$UID
+    [[ -n "$(ls -A "$LOC")" ]] || mkdir -p "$LOC" || return 1
+    sudo mount -o umask=0022,gid=$G,uid=$U "$DEV" "$LOC"
+}
+
+mnt_fstype() {
+    DEV=$1
+    LOC=$2
+    TYPE=${3:-"ntfs"}
+    G=$GID
+    U=$UID
+    [[ -n "$(ls -A "$LOC")" ]] || mkdir -p "$LOC" || return 1
+    sudo mount -t "$TYPE" -o umask=0022,gid=$G,uid=$U "$DEV" "$LOC"
+}

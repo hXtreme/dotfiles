@@ -2,7 +2,7 @@
 
 if [ -z "$XEMBED" ]; then
     ## Open a tabbed surf instance
-    tabbed -c -n tsurf surf -e
+    tabbed -c -p -1 -n surf surf -e
 else
     # Already in an embeded XWindow, use that.
     surf -e "$XEMBED" 2> /dev/null &
