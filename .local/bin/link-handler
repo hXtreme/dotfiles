@@ -22,7 +22,7 @@ def zoom_handler(*args):
     args = list(args)
     URL_REGEX = (
         r"https?://"
-        r"(?P<domain>[a-zA-Z0-9]*\.zoom\.us)/j/"
+        r"((?P<domain>[a-zA-Z0-9]*\.)?zoom\.us)/j/"
         r"(?P<confno>[0-9]+)"
         r"(?:\?pwd=(?P<pwd>.*))?"
     )

@@ -16,9 +16,6 @@ call plug#begin()
         return get(b:, 'coc_current_function', '')
     endfunction
 
-    " Nvim Completion manager.
-    "Plug 'ncm2/ncm2'
-
     " Solarized theme (finally)
     let g:neosolarized_contrast = "normal"
     set background=dark
@@ -49,8 +46,17 @@ call plug#begin()
     " Coq : Interactive Coq Proofs
     Plug 'whonore/Coqtail', { 'for': ['v'] }
 
+    " Autoformat files
+    Plug 'Chiel92/vim-autoformat'
+
+    " Open policy agent - rego
+    Plug 'tsandall/vim-rego'
+
     " DevIcons
     Plug 'ryanoasis/vim-devicons'
+
+    " Datalog
+    Plug 'souffle-lang/souffle.vim'
 call plug#end()
 
 " Select Solarized as my theme.

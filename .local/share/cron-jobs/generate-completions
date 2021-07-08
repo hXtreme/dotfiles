@@ -16,7 +16,15 @@ rustup completions zsh cargo > "$ZSH_COMPLETIONS_DIR"/_cargo
 
 # -----------------------------
 # # Github-cli
+# ```
 gh completion --shell zsh > "$ZSH_COMPLETIONS_DIR"/_gh
+# ```
 
 # -----------------------------
 
+# # podman
+# ```
+podman completion zsh > "$ZSH_COMPLETIONS_DIR"/_podman
+# ```
+
+# -----------------------------

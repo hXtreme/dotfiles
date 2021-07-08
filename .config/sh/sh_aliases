@@ -5,6 +5,9 @@
 ### File/Dir picker
 alias pick='ls -a | fzf --prompt="picker>" '
 
+### git log (graph with short stats)
+alias glogs='git log --oneline --graph --stat'
+
 ### manage dotfiles repo
 alias dot='/usr/bin/git --git-dir=$HOME/Documents/dotfiles/ --work-tree=$HOME '
 alias dotc='dot commit -v ' # Create commit
@@ -22,7 +25,7 @@ alias dotad='dota $(pick) ' # Pick and stage
 alias dotal='dota $(dotpickl) ' # Pick and stage
 
 ### copy files
-alias copy='rsync -rv --info=progress2 '
+alias copy='rsync -rvH --info=progress2 '
 
 ### pip
 alias pip-upgrade='pip list --user -o --format columns | tail -n+3 | cut -d" " -f1 | xargs -r -d"\n" pip install -U'
@@ -53,3 +56,6 @@ alias blue='bluetoothctl '
 alias bluedev='blue devices '
 alias blueconn='blue connect '
 alias bluedconn='blue disconnect '
+
+### sprunge (pastebin equiv.)
+alias pastebin='curl -F "sprunge=<-" http://sprunge.us '

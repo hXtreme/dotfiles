@@ -80,7 +80,7 @@ plugins=(
 	pipenv
 	zsh-completions
 	zsh-autosuggestions
-	thefuck
+	fzf
 	zsh-interactive-cd
 	zsh-syntax-highlighting
 )
@@ -121,3 +121,5 @@ source "$ZSH/custom/.zsh_aliases"
 eval "$(direnv hook zsh)"
 
 date-banner
+# init the zsh-completions
+autoload -U compinit && compinit
