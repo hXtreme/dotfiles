@@ -61,7 +61,11 @@ call plug#end()
 
 " Select Solarized as my theme.
 colorscheme NeoSolarized
+" Transparent Background
+hi Normal guibg=NONE ctermbg=NONE
 
+" tabstop - visual size of tab
+set tabstop=2
 
 " Set my leader key.
 let mapleader = ','
