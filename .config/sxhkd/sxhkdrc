@@ -45,8 +45,8 @@ super + e ; {f,s,w,z}
 #   - n: nnn
 #   - r: ranger
 #   - m: music (ncmpcpp)
-super + e ; {t,p,n,r,m}
-    st -n "f-st" -g=120x32+400+280 {_,ipython,nnn,ranger,ncmpcpp}
+super + e ; {t,c,p,n,r,m}
+    st -n "f-st" -g=120x32+400+280 {_,calcurse,ipython,nnn,ranger,ncmpcpp}
 
 #  Execute electron apps
 #   - m: messenger
