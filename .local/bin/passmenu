@@ -16,13 +16,13 @@ password_files=( "$prefix"/**/*.gpg )
 password_files=( "${password_files[@]#"$prefix"/}" )
 password_files=( "${password_files[@]%.gpg}" )
 
-password=$(printf '%s\n' "${password_files[@]}" | dmenu -C -l 5 -g 3 -p "🔑 pass >" "$@")
+password=$(printf '%s\n' "${password_files[@]}" | dmenu -C -l 5 -g 2 -p "🔑 pass >" "$@")
 
 [[ -n $password ]] || exit
 
 if [[ $typeit -eq 0 ]]; then
 	pass show -c "$password" 2>/dev/null
-	dunstify "🔑 $password password copied to clipboard" -r "$MSG_ID"
+	dunstify -t 45000 -r "$MSG_ID" "🔑 $password password copied to clipboard"
 else
 	pass show "$password" | { IFS= read -r pass; printf %s "$pass"; } |
 		xdotool type --clearmodifiers --file -
