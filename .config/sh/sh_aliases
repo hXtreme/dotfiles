@@ -47,8 +47,9 @@ alias y='yay'
 alias v='nvim'
 
 ### fancy-banner
-alias figlet='figlet -kcf colossal '
-alias cbanner='(figlet | lolcat -ft )'
+alias figlet='figlet -kf colossal '
+alias banner='figlet -kcf banner3 '
+alias cbanner='(banner | lolcat -ft )'
 alias date-banner='date +"%I:%M %P" | cbanner'
 
 ### bluetoothctl
