@@ -1,0 +1,5 @@
+#! /bin/sh
+
+DBUS_SESSION_BUS_ADDRESS='unix:path=/run/user/1000/bus'
+
+DBUS_SESSION_BUS_ADDRESS="$DBUS_SESSION_BUS_ADDRESS" /usr/bin/notify-send "$@"

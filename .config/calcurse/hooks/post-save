@@ -1,0 +1,16 @@
+#! /bin/sh
+
+# calcurse hook after a save.
+
+data_dir="${XDG_DATA_HOME:-$HOME/.local/share}/calcurse"
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/calcurse"
+
+# Do not do anything when synchronizing with a CalDAV server.
+[ -f "$data_dir/caldav/lock" ] && exit
+
+(
+		date="$(date +'%b %d %H:%M:%S')"
+		echo "$date Running calcurse-caldav from the post-save hook..."
+		calcurse-caldav || notify-send -i "calendar" -u critical "Calendar update failed"
+		echo
+) >>caldav/log 2>&1 &

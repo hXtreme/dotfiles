@@ -1,0 +1,11 @@
+#! /bin/sh
+# Update calcurse
+
+data_dir="${XDG_DATA_HOME:-$HOME/.local/share}/calcurse"
+config_dir="${XDG_CONFIG_HOME:-$HOME/.config}/calcurse"
+
+# Do not do anything when synchronizing with a CalDAV server.
+[ -f "$data_dir/caldav/lock" ] && exit
+
+/usr/bin/calcurse-caldav || \
+				$HOME/.local/bin/notify -i "calendar" -u critical "Calendar update failed"
