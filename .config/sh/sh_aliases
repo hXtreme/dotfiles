@@ -16,13 +16,15 @@ alias dotll='dot pull ' # Pull commits
 alias dotf='dot fetch ' # Fetch
 alias dotfa='dot fetch --all ' # Fetch all
 alias dotlg='dot log ' # Show log
+alias dotlogs='dot log --oneline --graph --stat' # Show fancy log
 alias dotst='dot status ' # Show status
 alias dotsts='dotst --short ' # Show short status
 alias dotstm='dotst --porcelain' # Show machine readable status
+alias dotpick='dot diff --stat | tac | fzf -m --ansi --header-lines=1 | cut -d " " -f2 ' # Pick from changed files
+alias dotd='dot diff ' # Show diff
 alias dota='dot add ' # Stage for commit
-alias dotpickl='dotstm | sed -r "s/^\s*(R|M)\s+//g" | fzf --prompt="picker>" ' # Pick from repo status
-alias dotad='dota $(pick) ' # Pick and stage
-alias dotal='dota $(dotpickl) ' # Pick and stage
+alias dotadd='dota $(pick) ' # Pick and stage
+alias dotals='dota $(dotpick) ' # Pick and stage
 
 ### copy files
 alias copy='rsync -rvH --info=progress2 '
