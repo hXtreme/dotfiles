@@ -14,6 +14,7 @@ def base_handler(program, *args):
 
 firefox_handler = partial(base_handler, "/usr/bin/firefox")
 links_handler = partial(base_handler, "/usr/bin/links")
+mpv_handler = partial(base_handler, "/usr/bin/mpv")
 surf_handler = partial(base_handler, "/usr/local/bin/surf")
 vlc_handler = partial(base_handler, "/usr/bin/vlc")
 
@@ -45,6 +46,7 @@ def zoom_handler(*args):
 LINK_HANDLERS = {
     "firefox": firefox_handler,
     "links": links_handler,
+    "mpv": mpv_handler,
     "surf": surf_handler,
     "vlc": vlc_handler,
     "zoom": zoom_handler,
