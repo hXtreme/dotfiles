@@ -14,3 +14,7 @@ alias sl='cd "$HOME/Documents/suckless"'
 alias sl-st='cd "$HOME/Documents/suckless/st"'
 alias sl-dwm='cd "$HOME/Documents/suckless/dwm"'
 alias sl-dmenu='cd "$HOME/Documents/suckless/dmenu"'
+
+# ## Frequent folders
+alias petabolx='cd "$HOME/Documents/petablox" '
+alias notes='cd "$HOME/Documents/meeting_notes" '
