@@ -32,7 +32,9 @@ unset FUNCTIONS_DIR
 . "$HOME/.config/sh/bookmarks"
 
 ## ssh-agent
-. $HOME/.cache/ssh/agent
+if [ -f "/tmp/ssh-agent" ]; then
+  . /tmp/ssh-agent
+fi
 
 ## Zoom Home
 export ZOOM_HOME="${HOME}/.local/share/zoomus"
