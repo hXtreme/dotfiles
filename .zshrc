@@ -91,6 +91,11 @@ HISTFILE="$HOME/.cache/.zsh_history"
 
 # User configuration
 
+if [[ ! -z "$SSH_CLIENT" ]] && [[ ! -z "$SSH_CONNECTION"]]; then
+  PATH="$HOME/.local/bin:$PATH"
+	[[ -z "$DISPLAY" ]] && export DISPLAY=:0
+fi
+
 ## nnn - cd on quit
 source /usr/share/nnn/quitcd/quitcd.bash_zsh
 
@@ -120,6 +125,9 @@ source "$ZSH/custom/.zsh_aliases"
 
 eval "$(direnv hook zsh)"
 
-date-banner
+if [[ -z "$SSH_CONNECTION" ]] || [[ "$DISPLAY" != ":0" ]]; then
+  date-banner
+fi
+
 # init the zsh-completions
 autoload -U compinit && compinit
