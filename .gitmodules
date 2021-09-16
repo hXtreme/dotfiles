@@ -10,3 +10,6 @@
 [submodule "zsh-syntax-highlighting"]
 	path = .config/ohmyzsh-custom/plugins/zsh-syntax-highlighting
 	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
+[submodule "spacemacs"]
+	path = .config/emacs
+	url = https://github.com/syl20bnr/spacemacs
