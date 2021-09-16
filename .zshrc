@@ -91,7 +91,7 @@ HISTFILE="$HOME/.cache/.zsh_history"
 
 # User configuration
 
-if [[ ! -z "$SSH_CLIENT" ]] && [[ ! -z "$SSH_CONNECTION"]]; then
+if [[ ! -z "$SSH_CLIENT" ]] && [[ ! -z "$SSH_CONNECTION" ]]; then
   PATH="$HOME/.local/bin:$PATH"
 	[[ -z "$DISPLAY" ]] && export DISPLAY=:0
 fi
