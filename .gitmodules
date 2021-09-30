@@ -13,3 +13,6 @@
 [submodule "spacemacs"]
 	path = .config/emacs
 	url = https://github.com/syl20bnr/spacemacs
+[submodule ".config/ohmyzsh-custom/plugins/conda-zsh-completion"]
+	path = .config/ohmyzsh-custom/plugins/conda-zsh-completion
+	url = git@github.com:esc/conda-zsh-completion.git
