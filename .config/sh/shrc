@@ -18,7 +18,7 @@ export PATH="$HOME/.gem/ruby/$RUBY_VER/bin:$PATH"
 unset RUBY_VER
 
 ### Add the cargo bin directory to PATH
-export PATH="$HOME/.local/bin/cargo:$PATH"
+export PATH="$HOME/.local/bin:$HOME/.cargo/bin:$PATH"
 
 ## Custom functions
 FUNCTIONS_DIR="$HOME/.config/sh/functions"
