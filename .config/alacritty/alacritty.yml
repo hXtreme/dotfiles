@@ -85,7 +85,13 @@ window:
     # Application instance name
     instance: Alacritty
     # General application class
-    general: st
+    # general: st
+
+  # opacity
+  #
+  # Window opacity as a floating point number from `0.0` to `1.0`.
+  # The value `0.0` is completely transparent and `1.0` is opaque.
+  opacity: 0.85
 
   # GTK theme variant (Linux/BSD only)
   #
@@ -352,12 +358,6 @@ colors:
   #     args: ["Hello, World!"]
   #
   #command: None
-
-# Background opacity
-#
-# Window opacity as a floating point number from `0.0` to `1.0`.
-# The value `0.0` is completely transparent and `1.0` is opaque.
-background_opacity: 0.85
 
 #selection:
   # This string contains all characters that are used as separators for
