@@ -124,7 +124,7 @@ bindkey '^H' backward-kill-word
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 source "$ZSH/custom/.zsh_aliases"
 
-eval "$(direnv hook zsh)"
+where direnv > /dev/null && eval "$(direnv hook zsh)"
 
 if [[ -z "$SSH_CONNECTION" ]] || [[ "$DISPLAY" != ":0" ]]; then
   date-banner
