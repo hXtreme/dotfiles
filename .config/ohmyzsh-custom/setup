@@ -1,26 +1,28 @@
 #! /bin/sh
+set +x
 
+WORKING_DIR="$(pwd)"
 DEST_DIR="$ZSH/custom"
 
 ALIAS_FILE=".zsh_aliases"
-echo "Linking aliases: ${ALIAS_FILE}" && ln -rs "./${ALIAS_FILE}" "${DEST_DIR}/${ALIAS_FILE}"
+echo "Linking aliases: ${ALIAS_FILE}" && ln -s "${WORKING_DIR}/${ALIAS_FILE}" "${DEST_DIR}/${ALIAS_FILE}"
 
-PLUGINS_DIR="./plugins"
+PLUGINS_DIR="${WORKING_DIR}/plugins"
 if [ -d "$PLUGINS_DIR" ]; then
   cd $PLUGINS_DIR || exit 255
   mkdir -p "$DEST_DIR/plugins"
   for plugin in *; do
-    [ -d "${plugin}" ] && echo "Linking plugin: ${plugin}" && ln -rs "./${plugin}" "${DEST_DIR}/plugins/${plugin}"
+    [ -d "${plugin}" ] && echo "Linking plugin: ${plugin}" && ln -s "${PLUGINS_DIR}/${plugin}" "${DEST_DIR}/plugins/${plugin}"
   done
   cd .. || exit 255
 fi
 
-THEMES_DIR="./themes"
+THEMES_DIR="${WORKING_DIR}/themes"
 if [ -d "$THEMES_DIR" ]; then
   cd $THEMES_DIR || exit 255
   mkdir -p "$DEST_DIR/themes"
   for theme in *; do
-    [ -d "${theme}" ] && echo "Linking theme: ${theme}" && ln -rs "./${theme}" "${DEST_DIR}/themes/${theme}"
+    [ -d "${theme}" ] && echo "Linking theme: ${theme}" && ln -s "${THEMES_DIR}/${theme}" "${DEST_DIR}/themes/${theme}"
   done
   cd .. || exit 255
 fi

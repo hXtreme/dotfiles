@@ -97,7 +97,8 @@ if [[ ! -z "$SSH_CLIENT" ]] && [[ ! -z "$SSH_CONNECTION" ]]; then
 fi
 
 ## nnn - cd on quit
-source /usr/share/nnn/quitcd/quitcd.bash_zsh
+NNN_QUITCD=/usr/share/nnn/quitcd/quitcd.bash_zsh
+[ -f "${NNN_QUITCD}" ] && source "${NNN_QUITCD}"
 
 # Key re-bindings
 

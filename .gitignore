@@ -1,2 +1,16 @@
 .cache
-Documents
+.DS_Store
+/.zsh_sessions/
+/.zcompdump*
+/.*_history
+Applications/
+Books/
+Desktop/
+Documents/
+Downloads/
+Library/
+Movies/
+Music/
+Pictures/
+Public/
+Sites/
